@@ -1,0 +1,60 @@
+name: Build Lean formalization
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Show pinned toolchain
+        run: lean --version
+
+      - name: Check local imports
+        run: python3 scripts/check_local_imports.py . AnyLayerIdentifiabilityProof
+
+      - name: Check source for placeholders and project assumptions
+        run: python3 scripts/check_no_placeholders.py AnyLayerIdentifiabilityProof AnyLayerIdentifiabilityProof.lean --json source-audit.json
+
+      - name: Fetch Mathlib cache
+        run: lake exe cache get
+
+      - name: Build all Lean files
+        run: lake build 2>&1 | tee build.log
+
+      - name: Print and check theorem axioms
+        run: |
+          ./scripts/print_axioms.sh 2>&1 | tee axiom-report.txt
+          python3 scripts/check_axioms.py axiom-report.txt
+
+      - name: Upload verification logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: noskip-transformer-identifiability-verification
+          path: |
+            build.log
+            axiom-report.txt
+            source-audit.json
+          if-no-files-found: ignore

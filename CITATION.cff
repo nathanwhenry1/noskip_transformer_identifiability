@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you reference this formalization, please cite it as below."
+title: "Generic identifiability of no-skip multi-head attention transformers"
+version: 1.0.0
+authors:
+  - family-names: "Henry"
+    given-names: "Nathan W."
+    affiliation: "Center for Human-Compatible AI, UC Berkeley"
+    email: "nathan.henry@berkeley.edu"
+date-released: 2026-07-13
+repository-code: "https://github.com/nathanwhenry1/noskip_transformer_identifiability"
+abstract: >-
+  A deep causal multi-head softmax-attention transformer without skip connections is
+  generically identifiable up to unique within-layer head permutations and a unique
+  boundary-normalized chain of interface gauges under an explicit width condition.
+  This repository contains a complete Lean 4 formalization against Mathlib v4.30.0,
+  including an exact generic matrix-fiber theorem, freeness, and factor-level recovery.
+keywords:
+  - "softmax attention"
+  - "multi-head attention"
+  - "no-skip transformer"
+  - "identifiability"
+  - "generic fibers"
+  - "Lean 4"
+  - "formal verification"

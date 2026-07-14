@@ -1,0 +1,144 @@
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Gauge
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.FormalStreams
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Analytic.MultiQuadricRigidity
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Genericity.Regularity
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Genericity.CascadeCertificate
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Genericity.GaugeStability
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.Analytic.SelectedTop
+import AnyLayerIdentifiabilityProof.NLayer.NoSkip.BaseCase
+
+/-!
+# No-skip frontier harness
+
+This file is a verification harness and is deliberately not imported by the
+library entrypoint `AnyLayerIdentifiabilityProof.NLayer.NoSkip`.
+-/
+
+open Matrix
+
+namespace TransformerIdentifiability.NLayer.NoSkip
+
+#check collapseMatrix_sub_valueSum
+#check layer_zero
+#check layer_permuteHeads
+#check transformer_succ
+#check transformer_permuteHeads
+#check GaugeMatrix.invTranspose
+#check GaugeChain.first_interface
+#check GaugeChain.last_interface
+#check gaugeAction_comp
+#check layer_gaugeAction
+#check transformer_gaugeAction
+#check transformer_gauge_invariant
+#check transformer_permute_gauge_invariant
+#check jointSurjective_iff_gram_det_ne_zero
+#check targetToSourceMatching_unique
+#check combinedGaugePermuteFreeAt_of_regular
+#check combinedGaugePermute_stabilizer_trivial
+#check lem_pole_transfer_of_real_tail_eq
+#check lem_explicit_sigmoid_mixture_recovery
+#check mvPolynomial_zeroSet_null
+#check mvPolynomial_eq_zero_of_eval_eqOn_isOpen
+#check global_labeling
+#check matrix_eq_zero_of_forall_mulVec_eq_zero_on_open
+#check matrix_telescoping_identity
+#check noSkipSaturatedK_eq_layerProduct
+#check MultiQuadricSliceStructure
+#check affineMap_eq_zero_on_submodule_of_relativelyOpen
+#check multiQuadricRigidity_of_witness
+#check multiQuadricRigidity
+#check prop_probe_recursion
+#check transformer_probeMatrix
+#check probeObservable_eq_probeOutput
+#check probeObservable_peeling_identity
+#check lem_polynomial_structure
+#check eval_formalPoint_actualProbeGateAssignment_full
+#check frozenPoint_closed
+#check eval_formalW_allZero
+#check eval_formalW_allOne_of_pos
+#check eval_formalPoint_allOne_eq_of_repeated_eq
+#check ProbeFormalAPI
+#check probeFormalAPI
+#check TargetRegularityPackage
+#check TargetRegularityPackage.regularity
+#check TargetRegularityPackage.polynomialClauses
+#check TargetRegularityPackage.localOpenness
+#check TargetRegularityPackage.localOpenLayerImage
+#check TargetRegularityPackage.cornerSeparationPolynomial
+#check TargetRegularityPackage.cornerSeparationWitness
+#check targetRegularityPackage_of_regular
+#check targetRegularityPackage_iff
+#check LocalOpenLayerImage
+#check localOpennessAt_iff_transmission
+#check Regularity.alphaCornerSlopeDiffPoly_ne_zero
+#check TargetCascadePackage
+#check TargetCascadePackage.certificate
+#check TargetCascadePackage.semantics
+#check TargetCascadePackage.semanticData
+#check TargetCascadePackage.certificate_inputGauge_iff
+#check TargetCascadePackage.semantics_inputGauge_iff
+#check targetCascadePackage_of_certificate
+#check targetCascadePackage_iff
+#check cascadeCertificate_iff_semantics
+#check cascadeCertificate_inputGauge_iff
+#check regularity_cascadeInputGaugeAction_iff
+#check localOpenness_cascadeInputGaugeAction_iff
+#check multiDialCertificate_cascadeInputGaugeAction_iff
+#check recursiveGeneric_cascadeInputGaugeAction_iff
+#check eval_complexFormalSlope_quadratic_split
+#check lem_selected_top
+#check lem_tower_dominance
+#check exists_targetCascadePackage
+#check identityGaugeBaseMatching
+#check BaseCaseConclusion.existsUnique_pairedMatrices
+#check baseCaseConclusionOfProbeOutputEq
+#check baseCaseConclusionOfProbeObservableEq
+#check depthOne_identifiability_of_probeOutput_eq
+#check depthOne_identifiability_of_probeObservable_eq
+
+#print axioms collapseMatrix_sub_valueSum
+#print axioms transformer_permuteHeads
+#print axioms transformer_gauge_invariant
+#print axioms transformer_permute_gauge_invariant
+#print axioms targetToSourceMatching_unique
+#print axioms combinedGaugePermuteFreeAt_of_regular
+#print axioms combinedGaugePermute_stabilizer_trivial
+#print axioms lem_pole_transfer_of_real_tail_eq
+#print axioms lem_explicit_sigmoid_mixture_recovery
+#print axioms mvPolynomial_zeroSet_null
+#print axioms mvPolynomial_eq_zero_of_eval_eqOn_isOpen
+#print axioms global_labeling
+#print axioms matrix_eq_zero_of_forall_mulVec_eq_zero_on_open
+#print axioms matrix_telescoping_identity
+#print axioms noSkipSaturatedK_eq_layerProduct
+#print axioms affineMap_eq_zero_on_submodule_of_relativelyOpen
+#print axioms multiQuadricRigidity_of_witness
+#print axioms multiQuadricRigidity
+#print axioms prop_probe_recursion
+#print axioms transformer_probeMatrix
+#print axioms probeObservable_peeling_identity
+#print axioms lem_polynomial_structure
+#print axioms eval_formalPoint_actualProbeGateAssignment_full
+#print axioms frozenPoint_closed
+#print axioms eval_formalPoint_allOne_eq_of_repeated_eq
+#print axioms probeFormalAPI
+#print axioms targetRegularityPackage_of_regular
+#print axioms targetRegularityPackage_iff
+#print axioms targetCascadePackage_of_certificate
+#print axioms targetCascadePackage_iff
+#print axioms regularity_cascadeInputGaugeAction_iff
+#print axioms localOpenness_cascadeInputGaugeAction_iff
+#print axioms multiDialCertificate_cascadeInputGaugeAction_iff
+#print axioms recursiveGeneric_cascadeInputGaugeAction_iff
+#print axioms eval_complexFormalSlope_quadratic_split
+#print axioms lem_selected_top
+#print axioms lem_tower_dominance
+#print axioms exists_targetCascadePackage
+#print axioms identityGaugeBaseMatching
+#print axioms BaseCaseConclusion.existsUnique_pairedMatrices
+#print axioms baseCaseConclusionOfProbeOutputEq
+#print axioms baseCaseConclusionOfProbeObservableEq
+#print axioms depthOne_identifiability_of_probeOutput_eq
+#print axioms depthOne_identifiability_of_probeObservable_eq
+
+end TransformerIdentifiability.NLayer.NoSkip

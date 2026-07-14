@@ -1,0 +1,17 @@
+# Lean / Lake
+/.lake
+.lake/
+*.olean
+*.ilean
+_Dead.lean
+
+# Verification artifacts
+axiom-report.txt
+build.log
+source-audit.json
+
+# Editors and operating systems
+.DS_Store
+.vscode/
+.idea/
+*~

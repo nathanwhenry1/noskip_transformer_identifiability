@@ -1,0 +1,42 @@
+import AnyLayerIdentifiabilityProof.Identifiability
+
+/-!
+# No-skip final audit harness
+
+This file is deliberately not imported by the public entrypoint: it checks the
+headline repaired-proof and public declarations and prints their kernel axiom
+dependencies for CI/manual audit.
+-/
+
+namespace TransformerIdentifiability.NLayer.NoSkip
+
+#check TransformerIdentifiability.identifiability_noSkip_gauge
+
+#check step1FirstLayerPoleContainment
+#check step1FirstAttentionIdentified
+#check source_transmission_of_transformer_eq
+#check headwiseFrozenSlopeAt_eq_zero_of_vanishesOn
+#check exists_headwiseTrichotomyResult
+#check HeadwiseTrichotomyResult.deeper_gates_compact_uniform
+#check exists_firstLayerGaugeIdentification
+#check exists_firstLayerPeelingResult
+#check openInductionInvariant
+#check genericMatrixIdentifiability
+#check realizationFiber_eq_permutationGaugeOrbit
+#check generic_permutationGaugeOrbit_free
+#check factorLevelIdentifiability
+
+#print axioms step1FirstLayerPoleContainment
+#print axioms step1FirstAttentionIdentified
+#print axioms source_transmission_of_transformer_eq
+#print axioms headwiseFrozenSlopeAt_eq_zero_of_vanishesOn
+#print axioms HeadwiseTrichotomyResult.deeper_gates_compact_uniform
+#print axioms exists_firstLayerGaugeIdentification
+#print axioms openInductionInvariant
+#print axioms genericMatrixIdentifiability
+#print axioms realizationFiber_eq_permutationGaugeOrbit
+#print axioms generic_permutationGaugeOrbit_free
+#print axioms factorLevelIdentifiability
+#print axioms TransformerIdentifiability.identifiability_noSkip_gauge
+
+end TransformerIdentifiability.NLayer.NoSkip
